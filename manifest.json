@@ -1,0 +1,27 @@
+{
+  "name": "Data Formatter",
+  "short_name": "DataFormatter",
+  "description": "Professional JSON/XML data formatter and analyzer with ERD schema visualization",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "categories": ["developer", "productivity", "utilities"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
