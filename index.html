@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Formatter - JSON/XML Analyzer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-text">
+                <h1>Data Formatter</h1>
+                <p>Analyze, format, and visualize JSON/XML data</p>
+            </div>
+            <div class="header-controls">
+                <button id="dark-mode-toggle" class="theme-toggle" title="Toggle Dark Mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Input Section -->
+        <section class="input-section">
+            <h2>Input</h2>
+            
+            <!-- Input Controls -->
+            <div class="input-controls">
+                <div class="control-group">
+                    <label for="url-input">Fetch from URL:</label>
+                    <div class="url-input-group">
+                        <input type="url" id="url-input" placeholder="https://api.example.com/data.json">
+                        <button id="fetch-btn" class="btn btn-primary">Fetch</button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="sample-select">Load Sample:</label>
+                    <select id="sample-select">
+                        <option value="">Choose a sample...</option>
+                        <option value="json-users">JSON - Users Data</option>
+                        <option value="json-products">JSON - Products Data</option>
+                        <option value="xml-books">XML - Books Catalog</option>
+                        <option value="xml-employees">XML - Employee Records</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <button id="clear-btn" class="btn btn-secondary">Clear All</button>
+                </div>
+            </div>
+
+            <!-- Input Textarea -->
+            <div class="input-area">
+                <label for="data-input">Paste your JSON/XML data:</label>
+                <textarea id="data-input" placeholder="Paste your JSON or XML data here..."></textarea>
+            </div>
+
+            <!-- Process Button -->
+            <div class="process-controls">
+                <button id="process-btn" class="btn btn-success">Process Data</button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <h2>Results</h2>
+            
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="beautify">Beautify</button>
+                <button class="tab-btn" data-tab="tree">Tree View</button>
+                <button class="tab-btn" data-tab="schema">Schema</button>
+                <button class="tab-btn" data-tab="convert">Convert Format</button>
+                <button class="tab-btn" data-tab="minify">Minify</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Beautify Tab -->
+                <div id="beautify-tab" class="tab-pane active">
+                    <div class="result-header">
+                        <h3>Formatted Data</h3>
+                        <button class="copy-btn" data-target="beautify-output">Copy</button>
+                    </div>
+                    <pre id="beautify-output" class="code-output"></pre>
+                </div>
+
+                <!-- Tree View Tab -->
+                <div id="tree-tab" class="tab-pane">
+                    <div class="result-header">
+                        <h3>Tree View</h3>
+                        <div class="tree-controls">
+                            <button id="expand-all-btn" class="btn btn-secondary">Expand All</button>
+                            <button id="collapse-all-btn" class="btn btn-secondary">Collapse All</button>
+                        </div>
+                    </div>
+                    <div id="tree-output" class="tree-container"></div>
+                </div>
+
+                <!-- Schema Tab -->
+                <div id="schema-tab" class="tab-pane">
+                    <div class="result-header">
+                        <h3>Database Schema</h3>
+                        <div class="schema-controls">
+                            <button id="zoom-out-btn" class="btn btn-secondary" title="Zoom Out">🔍−</button>
+                            <span id="zoom-level" class="zoom-indicator">100%</span>
+                            <button id="zoom-in-btn" class="btn btn-secondary" title="Zoom In">🔍+</button>
+                            <button id="zoom-reset-btn" class="btn btn-secondary" title="Reset Zoom">⌂</button>
+                            <button id="fullscreen-btn" class="btn btn-secondary" title="Fullscreen">⛶</button>
+                        </div>
+                    </div>
+                    <div id="schema-visualization" class="schema-container" title="Use Ctrl+Scroll to zoom, drag to pan"></div>
+                    <div class="schema-help">
+                        <small>💡 Use zoom controls above, or Ctrl+Scroll wheel to zoom. Click and drag to pan around the diagram.</small>
+                    </div>
+                    <div id="schema-tables" class="schema-tables"></div>
+                </div>
+
+                <!-- Convert Tab -->
+                <div id="convert-tab" class="tab-pane">
+                    <div class="result-header">
+                        <h3>Format Conversion</h3>
+                        <button class="copy-btn" data-target="convert-output">Copy</button>
+                    </div>
+                    <div class="conversion-info">
+                        <span id="conversion-direction"></span>
+                    </div>
+                    <pre id="convert-output" class="code-output"></pre>
+                </div>
+
+                <!-- Minify Tab -->
+                <div id="minify-tab" class="tab-pane">
+                    <div class="result-header">
+                        <h3>Minified Data</h3>
+                        <button class="copy-btn" data-target="minify-output">Copy</button>
+                    </div>
+                    <pre id="minify-output" class="code-output"></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Error Display -->
+    <div id="error-message" class="error-popup hidden">
+        <div class="error-content">
+            <span class="error-text"></span>
+            <button class="error-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-popup hidden">
+        <div class="success-content">
+            <span class="success-text"></span>
+        </div>
+    </div>
+
+    <script src="js/samples.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/converter.js"></script>
+    <script src="js/schema.js"></script>
+    <script src="js/visualizer.js"></script>
+    <script src="js/treeview.js"></script>
+    <script src="js/fetcher.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

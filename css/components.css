@@ -1,0 +1,513 @@
+/* Component-specific Styles */
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Button Loading State */
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Syntax Highlighting */
+.json-key {
+    color: #0066cc;
+    font-weight: 600;
+}
+
+.json-string {
+    color: #009900;
+}
+
+.json-number {
+    color: #cc6600;
+}
+
+.json-boolean {
+    color: #cc0066;
+    font-weight: 600;
+}
+
+.json-null {
+    color: #999;
+    font-style: italic;
+}
+
+.xml-tag {
+    color: #0066cc;
+    font-weight: 600;
+}
+
+.xml-attribute {
+    color: #cc6600;
+}
+
+.xml-text {
+    color: #333;
+}
+
+/* Copy Animation */
+.copy-btn.copied {
+    background: #28a745 !important;
+    transform: scale(0.95);
+}
+
+.copy-btn.copied::after {
+    content: " ✓";
+}
+
+/* Input Validation States */
+.input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+.input-success {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.empty-state-message {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Progress Indicator */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.badge-info {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* File Drop Zone */
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.drop-zone.dragover {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.drop-zone-text {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Tree View Styles */
+.tree-container {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.tree-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tree-controls .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.tree-node {
+    position: relative;
+    margin-left: 20px;
+    border-left: 1px dashed #ccc;
+    padding-left: 10px;
+}
+
+.tree-node.root {
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
+}
+
+.tree-item {
+    position: relative;
+    margin: 4px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tree-item::before {
+    content: '';
+    position: absolute;
+    left: -11px;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    border-top: 1px dashed #ccc;
+}
+
+.tree-toggle {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.tree-toggle:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 3px;
+}
+
+.tree-toggle.collapsed::before {
+    content: '+';
+}
+
+.tree-toggle.expanded::before {
+    content: '−';
+}
+
+.tree-toggle.leaf::before {
+    content: '•';
+    color: #999;
+}
+
+.tree-key {
+    color: #0066cc;
+    font-weight: 600;
+}
+
+.tree-type {
+    color: #666;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.tree-value {
+    margin-left: 5px;
+}
+
+.tree-value.string {
+    color: #009900;
+}
+
+.tree-value.number {
+    color: #cc6600;
+}
+
+.tree-value.boolean {
+    color: #cc0066;
+    font-weight: 600;
+}
+
+.tree-value.null {
+    color: #999;
+    font-style: italic;
+}
+
+.tree-children {
+    margin-top: 4px;
+}
+
+.tree-children.collapsed {
+    display: none;
+}
+
+.tree-count {
+    color: #666;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.tree-search-match {
+    background: rgba(255, 235, 59, 0.3);
+    border-radius: 3px;
+    padding: 2px 4px;
+    margin: -2px -4px;
+}
+
+.tree-search-match .tree-key,
+.tree-search-match .tree-value {
+    font-weight: bold;
+}
+
+/* Schema Visualization Enhancements */
+.schema-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.schema-controls .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    min-width: auto;
+}
+
+.zoom-indicator {
+    font-weight: 600;
+    color: #667eea;
+    min-width: 45px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.schema-container {
+    position: relative;
+    overflow: auto;
+    cursor: grab;
+}
+
+.schema-container:active {
+    cursor: grabbing;
+}
+
+.schema-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999;
+    background: white;
+    border-radius: 0;
+}
+
+.erd-visualization {
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+}
+
+.schema-node {
+    stroke: #667eea;
+    stroke-width: 2;
+    fill: white;
+    cursor: pointer;
+}
+
+.schema-node:hover {
+    stroke-width: 3;
+    fill: rgba(102, 126, 234, 0.1);
+}
+
+.schema-link {
+    stroke: #999;
+    stroke-width: 1;
+    fill: none;
+}
+
+.schema-link.one-to-one {
+    stroke: #28a745;
+    stroke-width: 2;
+}
+
+.schema-link.one-to-many {
+    stroke: #dc3545;
+    stroke-width: 2;
+    stroke-dasharray: '5,5';
+}
+
+.schema-link.many-to-many {
+    stroke: #ffc107;
+    stroke-width: 3;
+    stroke-dasharray: '10,5';
+}
+
+.schema-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.relationship-label {
+    font-size: 10px;
+    fill: #666;
+    text-anchor: middle;
+}
+
+.schema-help {
+    text-align: center;
+    padding: 0.5rem;
+    color: #666;
+    font-style: italic;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+}
+
+/* Responsive Utilities */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus Styles */
+.btn:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.tab-btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        background: #000;
+        border: 2px solid #fff;
+    }
+    
+    .code-output {
+        background: #fff;
+        border: 2px solid #000;
+    }
+}
